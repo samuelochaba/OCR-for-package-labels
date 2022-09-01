@@ -34,12 +34,12 @@ body {
   height: 10px;
 }
 .label-scanner-webcam-wrapper {
-  /* border: 1px solid red; */
   border-radius: 10px;
+  position: relative;
 }
 .webcam {
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   max-width: 600px;
   display: block;
   margin: 0 auto;
@@ -56,6 +56,10 @@ video {
   margin-top: 50px;
   border-radius: 8px;
   cursor: pointer;
+  position: absolute;
+  bottom: 5%;
+  opacity: 0.7;
+  transform: translateX(-50%);
 }
 .checkbox-container {
   margin-top: 20px;

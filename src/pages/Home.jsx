@@ -7,6 +7,12 @@ import Loading from "../components/Loading";
 import { useEffect } from "react";
 import Header from "../components/Header";
 
+const videoConstraints = {
+  width: 1280,
+  height: 720,
+  facingMode: { exact: "environment" },
+};
+
 function Home() {
   let navigate = useNavigate();
   const [appState, setAppState] = useState({
@@ -73,7 +79,7 @@ function Home() {
           audio={false}
           screenshotFormat="image/jpeg"
           className="webcam"
-          // videoConstraints={videoConstraints}
+          videoConstraints={videoConstraints}
         >
           {({ getScreenshot }) => (
             <button

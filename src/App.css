@@ -1,38 +1,83 @@
-.App {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+}
+.label-scanner-header {
+  color: black;
+  font-size: 1rem;
+  margin-top: 1.5rem;
+}
+.label-scanner-container {
   text-align: center;
+  background-color: #eff1f3;
+  height: 100vh;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.progress-label {
+  margin-bottom: 5px;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.progress-bar {
+  background-color: rgb(232, 232, 232);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 10px;
+  max-width: 50vw;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.progress {
+  background-color: rgb(0, 255, 170);
+  width: 0%;
+  height: 10px;
+}
+.label-scanner-webcam-wrapper {
+  /* border: 1px solid red; */
+  border-radius: 10px;
+}
+.webcam {
+  width: 100%;
+  height: 100%;
+  max-width: 600px;
+  display: block;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+video {
+  border-radius: 10px;
+}
+.label-scanner-scan-button {
+  background: #223843;
+  padding: 10px 40px;
+  color: white;
+  border: none;
+  margin-top: 50px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.checkbox-container {
+  margin-top: 20px;
+  font-size: 14px;
+}
+.checkbox-container div {
+  margin-top: 10px;
+}
+.checkbox-container div input {
+  margin-right: 5px;
+}
+.packages-data-container {
+  margin: 0 auto;
+}
+.package-card {
+  width: 90%;
+  max-width: 600px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin: 0 auto;
 }
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.package-card img {
+  max-width: 100%;
 }

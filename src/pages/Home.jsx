@@ -3,7 +3,6 @@ import { useState } from "react";
 import Webcam from "react-webcam";
 import { useNavigate } from "react-router-dom";
 import { createWorker } from "tesseract.js";
-import logo from "../images/doormat-logo.png";
 import Loading from "../components/Loading";
 import { useEffect } from "react";
 import Header from "../components/Header";

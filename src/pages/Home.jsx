@@ -32,7 +32,10 @@ function Home() {
     },
   });
   const convertImageToText = async (img) => {
-    if (!img) return;
+    if (!img) {
+      alert("no image");
+      return;
+    }
     await worker.load();
     await worker.loadLanguage("eng");
     await worker.initialize("eng");

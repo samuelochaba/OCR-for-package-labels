@@ -1,10 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState } from "react";
 import Webcam from "react-webcam";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { createWorker } from "tesseract.js";
 import Loading from "../components/Loading";
-import { useEffect } from "react";
 import Header from "../components/Header";
 
 const videoConstraints = {
@@ -14,7 +13,7 @@ const videoConstraints = {
 };
 
 function Home() {
-  let navigate = useNavigate();
+  // let navigate = useNavigate();
   const [appState, setAppState] = useState({
     ocr: "",
     progress: 0,
@@ -44,17 +43,15 @@ function Home() {
     return text;
   };
 
-  console.log(appState);
-
-  useEffect(() => {
-    if (finishedScanning && promiseToDeliver) {
-      navigate("/packages-data", {
-        state: {
-          data: appState.capturedLabels,
-        },
-      });
-    }
-  }, [finishedScanning, promiseToDeliver]);
+  // useEffect(() => {
+  //   if (finishedScanning && promiseToDeliver) {
+  //     navigate("/packages-data", {
+  //       state: {
+  //         data: appState.capturedLabels,
+  //       },
+  //     });
+  //   }
+  // }, [finishedScanning, promiseToDeliver]);
 
   return (
     <div className="label-scanner-container">
@@ -94,6 +91,7 @@ function Home() {
                     {
                       labelImg: img,
                       rawTextFromImg: await convertImageToText(img),
+                      index: appState.capturedLabels.length + 1,
                     },
                   ],
                 });
@@ -103,6 +101,28 @@ function Home() {
             </button>
           )}
         </Webcam>
+      </div>
+      <div className="scanned-packages-details">
+        <h3>Scanned packages</h3>
+        {appState.capturedLabels
+          .sort((a, b) => b.index - a.index)
+          .map((label, index) => {
+            return (
+              <div key={index} className="package-card">
+                <img src={label.labelImg} alt="package label" />
+                <div>
+                  <p>{label.rawTextFromImg}</p>
+                </div>
+
+                {/* <div>
+                  <p>Name: John doe</p>
+                  <p>Address: Bentely street</p>
+                  <p>Tracking code: A7F3ERT</p>
+                  <p>Carrier: FedEx</p>
+                </div> */}
+              </div>
+            );
+          })}
       </div>
       <div className="checkbox-container">
         <div>

@@ -75,6 +75,7 @@ function Home() {
         ""
       )}
       <div className="label-scanner-webcam-wrapper">
+        <a href="/barcode">barcode</a>
         <Webcam
           audio={false}
           screenshotFormat="image/jpeg"

@@ -1,9 +1,43 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
-// import BarcodeScannerComponent from "react-qr-barcode-scanner";
-import { BarcodeScanner } from "react-barcode-scanner";
+import { useRef } from "react";
+import { useEffect } from "react";
 
 const Barcode = () => {
   const [data, setData] = React.useState("Not Found");
+  // const [barcodeDetector, setBarcodeDetector] = useState(null);
+  // const [mediaStream, setMediaStrem] = useState(null);
+  const videoRef = useRef(null);
+
+  async function detect() {
+    const barcodeDetector = new window.BarcodeDetector();
+
+    videoRef.current.srcObject = await navigator.mediaDevices.getUserMedia({
+      video: { facingMode: "user" },
+    });
+    videoRef.current.autoplay = true;
+
+    function render() {
+      barcodeDetector
+        .detect(videoRef.current)
+        .then((barcodes) => {
+          barcodes.forEach((barcode) => {
+            setData(barcode.rawValue);
+          });
+        })
+        .catch(console.error);
+    }
+
+    (function renderLoop() {
+      requestAnimationFrame(renderLoop);
+      render();
+    })();
+  }
+
+  useEffect(() => {
+    detect();
+  }, []);
+
   return (
     // <>
     //   <BarcodeScannerComponent
@@ -18,12 +52,13 @@ const Barcode = () => {
     //   <p>{data}</p>
     // </>
     <>
-      <BarcodeScanner
+      {/* <BarcodeScanner
         onCapture={(data) => {
           console.log(data);
           setData(data);
         }}
-      />
+      /> */}
+      <video ref={videoRef}></video>
       <p>{data}</p>
     </>
   );

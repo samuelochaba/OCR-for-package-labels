@@ -13,7 +13,7 @@ const Barcode = () => {
     const barcodeDetector = new window.BarcodeDetector();
 
     videoRef.current.srcObject = await navigator.mediaDevices.getUserMedia({
-      video: { facingMode: "user" },
+      video: { facingMode: "environment" },
     });
     videoRef.current.autoplay = true;
 
